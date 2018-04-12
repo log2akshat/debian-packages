@@ -1,0 +1,58 @@
+#/*
+# *.gitlab-ci.yml
+# *
+# * Copyright 2018 Raju Devidas <raju@hamaralinux.org>
+# *
+# * This program is free software; you can redistribute it and/or modify
+# * it under the terms of the GNU General Public License as published by
+# * the Free Software Foundation; either version 2 of the License, or
+# * (at your option) any later version.
+# *
+# * This program is distributed in the hope that it will be useful,
+# * but WITHOUT ANY WARRANTY; without even the implied warranty of
+# * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# * GNU General Public License for more details.
+# *
+# * You should have received a copy of the GNU General Public License
+# * along with this program; if not, write to the Free Software
+# * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+# * MA 02110-1301, USA.
+# *
+# *
+# */
+
+# Defines stages each corresponding to a separate mate package
+image: debian:buster
+
+stages:
+    - prepare
+    - build
+
+#----------------------------------------------------------------------------------------------------------------
+#Preparing the container for builds
+prepare:
+    stage: prepare
+    allow_failure: true
+    dependencies: []
+
+    script:
+        - export DEBIAN_FRONTEND=noninteractive
+        - echo "Preparing the container for builds"
+        - apt update
+        - apt-get -y upgrade
+        - apt-get -y dist-upgrade
+        - apt-get -y install apt-utils figlet dpkg-dev fakeroot git-buildpackage lintian pristine-tar build-essential devscripts
+        - apt-get -y autoremove --purge
+        - apt-get clean
+        - figlet preparing
+        - mkdir ~/mate/debian-packages
+        
+#Build Packages
+build:
+    stage: build
+    allow_failure: true
+    dependencies: []
+
+    script:
+        - mkdir ~/mate/{atril,libmatemixer,mate-desktop-environment,mate-polkit,mate-user-guide,libmateweather,mate-icon-theme,mate-power-manager,mate-user-share,caja,marco,mate-icon-theme-faenza,mate-screensaver,mate-utils,caja-dropbox,mate-applets,mate-indicator-applet,mate-sensors-applet,mozo,caja-extensions,mate-backgrounds,mate-media,mate-session-manager,pluma,mate-calc,mate-menus,mate-settings-daemon,python-caja,engrampa,mate-common,mate-netbook,mate-system-monitor,eom,mate-control-center,mate-notification-daemon,mate-terminal,libmatekbd,mate-desktop,mate-panel,mate-themes}
+        - ./build.py atril
