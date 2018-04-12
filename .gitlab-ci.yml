@@ -45,7 +45,7 @@ prepare:
         - apt-get -y autoremove --purge
         - apt-get clean
         - figlet preparing
-        - mkdir ~/mate/debian-packages
+        - mkdir -p ~/mate/debian-packages
         
 #Build Packages
 build:
@@ -54,5 +54,5 @@ build:
     dependencies: []
 
     script:
-        - mkdir ~/mate/{atril,libmatemixer,mate-desktop-environment,mate-polkit,mate-user-guide,libmateweather,mate-icon-theme,mate-power-manager,mate-user-share,caja,marco,mate-icon-theme-faenza,mate-screensaver,mate-utils,caja-dropbox,mate-applets,mate-indicator-applet,mate-sensors-applet,mozo,caja-extensions,mate-backgrounds,mate-media,mate-session-manager,pluma,mate-calc,mate-menus,mate-settings-daemon,python-caja,engrampa,mate-common,mate-netbook,mate-system-monitor,eom,mate-control-center,mate-notification-daemon,mate-terminal,libmatekbd,mate-desktop,mate-panel,mate-themes}
+        - mkdir -p ~/mate/{atril,libmatemixer,mate-desktop-environment,mate-polkit,mate-user-guide,libmateweather,mate-icon-theme,mate-power-manager,mate-user-share,caja,marco,mate-icon-theme-faenza,mate-screensaver,mate-utils,caja-dropbox,mate-applets,mate-indicator-applet,mate-sensors-applet,mozo,caja-extensions,mate-backgrounds,mate-media,mate-session-manager,pluma,mate-calc,mate-menus,mate-settings-daemon,python-caja,engrampa,mate-common,mate-netbook,mate-system-monitor,eom,mate-control-center,mate-notification-daemon,mate-terminal,libmatekbd,mate-desktop,mate-panel,mate-themes}
         - ./build.py atril
